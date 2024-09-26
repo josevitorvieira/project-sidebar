@@ -1,0 +1,16 @@
+<div class="sidebar" [ngClass]="position" [class.open]="isOpen" style="overflow: hidden;" [ngStyle]="getDrawerStyle">
+    <div style="width: 100%; margin-bottom: 20px;">
+        <button class="close-btn" (click)="closeDrawer()"><i class="pi pi-times"></i></button>
+    </div>
+
+    <div style="padding: 20px;">
+        <ng-content></ng-content>
+    </div>
+</div>
+
+<p-button 
+    type="button" 
+    class="mr-2"
+    label="Abrir"     
+    (onClick)="OpenCloseSideBar()"
+/>
