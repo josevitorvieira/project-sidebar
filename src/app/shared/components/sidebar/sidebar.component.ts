@@ -21,6 +21,13 @@ export class SidebarComponent {
       : { width: this.SIZE_PORCENTAGE, height: this.size };
   }
 
+  public get getContentWidth(): string {
+    return this.position === PositionEnum.Top ||
+      this.position === PositionEnum.Bottom
+      ? 'content-half-width'
+      : 'content-full-width';
+  }
+
   public OpenCloseSideBar(): void {
     this.isOpen = !this.isOpen;
   }

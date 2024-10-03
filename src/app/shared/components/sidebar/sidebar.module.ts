@@ -10,4 +10,4 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [CommonModule, ButtonModule, BrowserModule, BrowserAnimationsModule],
   exports: [SidebarComponent],
 })
-export class TSidebarModule {}
+export class BasicSidebarModule {}

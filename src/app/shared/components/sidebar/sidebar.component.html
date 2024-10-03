@@ -10,7 +10,9 @@
     </button>
   </div>
 
-  <div class="content">
-    <ng-content></ng-content>
+  <div class="container-content">
+    <div class="content" [ngClass]="getContentWidth">
+      <ng-content></ng-content>
+    </div>
   </div>
 </div>

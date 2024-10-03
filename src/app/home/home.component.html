@@ -1,7 +1,20 @@
 <div>
-  <app-sidebar [size]="'500px'">
-    <app-dynamic-form [config]="config"></app-dynamic-form>
-  </app-sidebar>  
+  <app-sidebar #sideBar [size]="SIZE_SIDEBAR" [position]="sidebarPosition">
+    <app-dynamic-form
+      [config]="config"
+      (save)="updateEmployee($event)"
+    ></app-dynamic-form>
+  </app-sidebar>
 </div>
-aaaaa
-  
+
+<div class="home">
+  <div class="home_card">
+    <app-card [cardTitle]="CARD_TITLE">
+      <app-basic-table
+        [colums]="COLUMS_EMPLOYEES"
+        [items]="employees"
+        (item)="setEmployeeFormConfig($event)"
+      ></app-basic-table>
+    </app-card>
+  </div>
+</div>
