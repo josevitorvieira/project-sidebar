@@ -8,10 +8,9 @@ describe('DynamicFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DynamicFormComponent]
-    })
-    .compileComponents();
-    
+      declarations: [DynamicFormComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(DynamicFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,13 +1,13 @@
-<form [formGroup]="form" style="width: 100%; margin-bottom: 20px;">
+<form [formGroup]="form" style="width: 100%; margin-bottom: 20px">
   <label>{{ config.label }}</label>
-  
+
   <p-dropdown
-    [style]="{ display: 'flex', width: '100%' }"     
-    [options]="config.options" 
+    [style]="{ display: 'flex', width: '100%' }"
+    [options]="config.options"
     [formControlName]="config.name"
     optionLabel="label"
     optionValue="value"
-    [placeholder]="config.label">
+    [placeholder]="config.label"
+  >
   </p-dropdown>
 </form>
-

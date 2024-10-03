@@ -1,0 +1,9 @@
+.home {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &_card {
+    width: 1000px;
+  }
+}

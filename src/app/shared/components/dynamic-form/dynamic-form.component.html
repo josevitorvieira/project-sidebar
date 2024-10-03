@@ -1,4 +1,8 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
-    <ng-container *ngFor="let field of config" [appDynamicField]="field" [form]="form">
-    </ng-container>
-  </form>
+  <ng-container
+    *ngFor="let field of config"
+    [appDynamicField]="field"
+    [form]="form"
+  >
+  </ng-container>
+</form>

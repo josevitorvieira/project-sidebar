@@ -8,15 +8,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormSelectModule } from './components/dynamic-form-select/dynamic-form-select.module';
 
 @NgModule({
-  declarations: [
-    DynamicFormComponent, DynamicFieldDirective
-  ],
+  declarations: [DynamicFormComponent, DynamicFieldDirective],
   imports: [
     CommonModule,
-    ReactiveFormsModule,    
+    ReactiveFormsModule,
     DynamicFormInputModule,
-    DynamicFormSelectModule,    
+    DynamicFormSelectModule,
   ],
-  exports: [DynamicFormComponent]
+  exports: [DynamicFormComponent],
 })
-export class DynamicFormModule { }
+export class DynamicFormModule {}
