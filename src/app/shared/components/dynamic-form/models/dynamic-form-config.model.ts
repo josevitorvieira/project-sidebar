@@ -7,12 +7,19 @@ export type TypeControl = {
   typeField?: string;
 };
 
-export type DynamicFormConfig = {
-  type: TypeControl;
+export interface ISelectOptions {
   label: string;
-  name: string;  
+  value: number;
+}
+
+export type DynamicFormConfig = {
+  type?: TypeControl;
+  label?: string;
+  name: string;
   initialValue?: any;
   placeholder?: string;
-  options?: Array<any>;
-  validation?: ValidatorFn[];
+  disabled: boolean;
+  options?: Array<ISelectOptions>;
+  validation?: Array<ValidatorFn>;
+  subParams?: Array<DynamicFormConfig>;
 };

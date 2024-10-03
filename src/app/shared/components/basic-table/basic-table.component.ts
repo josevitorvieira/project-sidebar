@@ -8,11 +8,11 @@ import { IColum } from './interfaces/basic-table.interface';
 })
 export class BasicTableComponent {
   @Input() colums: Array<IColum> = [];
-  @Input() items: Array<Object> = [];
+  @Input() items: Array<any> = [];
 
   @Output() item: EventEmitter<any> = new EventEmitter<any>();
 
-  public emitItem(item: any): void {
+  public emitItem(item: Object): void {
     this.item.emit(item);
   }
 }

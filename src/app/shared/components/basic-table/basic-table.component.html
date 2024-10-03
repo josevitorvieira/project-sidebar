@@ -9,7 +9,9 @@
   </ng-template>
   <ng-template pTemplate="body" let-item>
     <tr>
-      <td *ngFor="let colum of colums">{{ item[colum.Key] }}</td>
+      <td *ngFor="let colum of colums">
+        {{ item[colum.Key] }}
+      </td>
 
       <td>
         <button

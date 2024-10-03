@@ -1,75 +1,66 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { DynamicFormConfig } from './models/dynamic-form-config.model';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { IEmployee } from '../../../home/interfaces/employee.interface';
 
 @Component({
   selector: 'app-dynamic-form',
   templateUrl: './dynamic-form.component.html',
   styleUrl: './dynamic-form.component.scss',
 })
-export class DynamicFormComponent {
-  @Input() config: any = null;
-  @Output() save = new EventEmitter();
-  form = new FormGroup({});
+export class DynamicFormComponent implements OnChanges {
+  @Input() config: Array<DynamicFormConfig> = [];
+  @Output() save: EventEmitter<IEmployee> = new EventEmitter<IEmployee>();
+
+  public form: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
+  ngOnChanges(): void {
     this.createForm();
   }
 
-  // createForm() {
-  //   this.config.forEach((control: any) =>
-  //     this.form.addControl(
-  //       control.name,
-  //       new FormControl(control.initialValue, control.validation)
-  //     )
-  //   );
-  // }
-
   createForm() {
-    this.config.forEach((control: DynamicFormConfig) => {
-      if (control.subParams) {
-        const group = new FormGroup({});
-        control.subParams.forEach((subControl: DynamicFormConfig) => {
-          group.addControl(
+    this.form = new FormGroup({});
+
+    this.config.forEach((controlConfig) => {
+      if (controlConfig.subParams && !!controlConfig?.subParams?.length) {
+        const subGroup = new FormGroup({});
+
+        controlConfig.subParams.forEach((subControl) => {
+          subGroup.addControl(
             subControl.name,
-            new FormControl(subControl.initialValue, subControl.validation)
+            new FormControl(
+              { value: subControl.initialValue, disabled: subControl.disabled },
+              subControl.validation
+            )
           );
         });
 
-        this.form.addControl(control.name, group);
+        this.form.addControl(controlConfig.name, subGroup);
       } else {
         this.form.addControl(
-          control.name,
-          new FormControl(control.initialValue, control.validation)
+          controlConfig.name,
+          new FormControl(
+            {
+              value: controlConfig.initialValue,
+              disabled: controlConfig.disabled,
+            },
+            controlConfig.validation
+          )
         );
       }
     });
-
-    console.log('Form: ', this.form);
   }
 
-  // private createForm(config: any): FormGroup {
-  //   const group: any = {};
-
-  //   Object.keys(config).forEach(key => {
-  //     if (typeof config[key] === 'object' && config[key] !== null && !Array.isArray(config[key])) {
-  //       group[key] = this.createForm(config);
-  //     } else {
-  //       group[key] = new FormControl(config[key]);
-  //     }
-  //   });
-
-  //   return this.fb.group(group);
-  // }
-
-  submit() {
-    if (this.form.valid) {
-      this.save.emit(this.form.value);
-      this.form.markAsPristine();
-    } else {
-      this.form.markAllAsTouched();
-    }
+  public submitForm(): void {
+    this.save.emit(this.form.getRawValue());
   }
 }

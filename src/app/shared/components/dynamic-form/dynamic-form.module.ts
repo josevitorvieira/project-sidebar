@@ -6,11 +6,15 @@ import { DynamicFormInputModule } from './components/dynamic-form-input/dynamic-
 import { DynamicFormSelectComponent } from './components/dynamic-form-select/dynamic-form-select.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormSelectModule } from './components/dynamic-form-select/dynamic-form-select.module';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
 
 @NgModule({
   declarations: [DynamicFormComponent, DynamicFieldDirective],
   imports: [
     CommonModule,
+    ButtonModule,
+    RippleModule,
     ReactiveFormsModule,
     DynamicFormInputModule,
     DynamicFormSelectModule,

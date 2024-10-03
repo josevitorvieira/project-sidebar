@@ -14,7 +14,7 @@ export class SidebarComponent {
 
   public readonly SIZE_PORCENTAGE: string = '100%';
 
-  public get getDrawerStyle() {
+  public get getSidebarStyle() {
     return this.position === PositionEnum.Left ||
       this.position === PositionEnum.Right
       ? { width: this.size, height: this.SIZE_PORCENTAGE }
@@ -25,7 +25,11 @@ export class SidebarComponent {
     this.isOpen = !this.isOpen;
   }
 
-  public closeDrawer(): void {
+  public OpenSidebar(): void {
+    this.isOpen = true;
+  }
+
+  public closeSidebar(): void {
     this.isOpen = false;
   }
 }

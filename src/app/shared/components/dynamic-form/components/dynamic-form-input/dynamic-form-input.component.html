@@ -1,10 +1,10 @@
-<div style="width: 100%; margin-bottom: 20px">
+<div class="container-input">
   <label>{{ config.label }}</label>
 
   <input
-    style="width: 100%"
+    class="form-input"
     pInputText
-    [attr.type]="config.type.typeField || 'text'"
+    [attr.type]="config?.type?.typeField || 'text'"
     [attr.placeholder]="config.placeholder"
     [formControlName]="config.name"
   />
