@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { DynamicFormConfig } from './models/dynamic-form-config.model';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { IEmployee } from '../../../home/interfaces/employee.interface';
+import { IEmployee } from '../../../employee-detail/interfaces/employee.interface';
 
 @Component({
   selector: 'app-dynamic-form',

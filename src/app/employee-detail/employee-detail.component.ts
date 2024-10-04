@@ -9,11 +9,11 @@ import { IEmployee } from './interfaces/employee.interface';
 import { SidebarComponent } from '../shared/components/sidebar/sidebar.component';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'app-employee-detail',
+  templateUrl: './employee-detail.component.html',
+  styleUrls: ['./employee-detail.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class EmployeeDetailComponent implements OnInit {
   @ViewChild('sideBar') sideBar!: SidebarComponent;
 
   private readonly NOT_FOUND_INDEX: number = -1;
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   public employees: Array<IEmployee> = [];
   public config: Array<DynamicFormConfig> = [];
-  public sidebarPosition: PositionEnum = PositionEnum.Top;
+  public sidebarPosition: PositionEnum = PositionEnum.Left;
   public baseForm: Array<DynamicFormConfig> = BASE_FORM_CONFIG;
 
   constructor(
