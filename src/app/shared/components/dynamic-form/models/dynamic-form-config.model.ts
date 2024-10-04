@@ -1,4 +1,4 @@
-import { ValidatorFn } from '@angular/forms';
+import { FormGroup, ValidatorFn } from '@angular/forms';
 
 export type Fields = 'input' | 'select';
 
@@ -23,3 +23,8 @@ export type DynamicFormConfig = {
   validation?: Array<ValidatorFn>;
   subParams?: Array<DynamicFormConfig>;
 };
+
+export interface IDynamicControl {
+  config: DynamicFormConfig;
+  form: FormGroup;
+}

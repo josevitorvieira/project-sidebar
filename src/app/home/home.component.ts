@@ -1,21 +1,10 @@
-import {
-  baseFormConfig,
-  employees,
-  IBaseFormEmployeeConfig,
-} from './consts/employees.const';
-import {
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
-import { Validators } from '@angular/forms';
+import { BASE_FORM_CONFIG } from './consts/employees.const';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { DynamicFormConfig } from '../shared/components/dynamic-form/models/dynamic-form-config.model';
 import { PositionEnum } from '../shared/components/sidebar/enums/sidebar.enum';
 import { EmployeesService } from './services/employees.service';
 import { IColum } from '../shared/components/basic-table/interfaces/basic-table.interface';
-import { COLUMS_EMPLOYEES } from './consts/colums-employees.const';
+import { COLUMS_EMPLOYEES_TABLE } from './consts/colums-employees.const';
 import { IEmployee } from './interfaces/employee.interface';
 import { SidebarComponent } from '../shared/components/sidebar/sidebar.component';
 
@@ -31,12 +20,12 @@ export class HomeComponent implements OnInit {
   public readonly SIZE_SIDEBAR: string = '500px';
   public readonly CARD_TITLE: string = 'Funcionários Cadastrados';
   public readonly FORM_TITLE: string = 'Editar Funcionário';
-  public readonly COLUMS_EMPLOYEES: Array<IColum> = COLUMS_EMPLOYEES;
+  public readonly COLUMS_EMPLOYEES: Array<IColum> = COLUMS_EMPLOYEES_TABLE;
 
   public employees: Array<IEmployee> = [];
   public config: Array<DynamicFormConfig> = [];
   public sidebarPosition: PositionEnum = PositionEnum.Top;
-  public baseForm: Array<DynamicFormConfig> = baseFormConfig;
+  public baseForm: Array<DynamicFormConfig> = BASE_FORM_CONFIG;
 
   constructor(
     private employeesService: EmployeesService,
@@ -51,31 +40,25 @@ export class HomeComponent implements OnInit {
     this.employees = this.employeesService.getEmployees();
   }
 
-  // CORRIGIR
   public setEmployeeFormConfig(employee: IEmployee): void {
     this.config = [];
     this.changeDetectorRef.detectChanges();
 
-    Object.keys(employee).forEach((key) => {
-      this.baseForm.forEach((item) => {
-        if (item?.name === key) {
-          if (!!item.subParams) {
-            Object.keys(employee[key]).forEach((keySubform) => {
-              item?.subParams?.forEach((itemSubparam) => {
-                if (itemSubparam?.name === keySubform) {
-                  itemSubparam.initialValue = employee[key][keySubform];
-                }
-              });
-            });
-          } else {
-            item.initialValue = employee[key];
-          }
-        }
-      });
+    this.baseForm.forEach((item) => {
+      const employeeValue = employee[item.name];
+
+      if (!employeeValue) return;
+
+      if (item.subParams && typeof employeeValue === 'object') {
+        item.subParams.forEach((itemSubparam) => {
+          itemSubparam.initialValue = employeeValue[itemSubparam.name];
+        });
+      } else {
+        item.initialValue = employeeValue;
+      }
     });
 
     this.config = this.baseForm;
-
     this.sideBar.OpenSidebar();
   }
 

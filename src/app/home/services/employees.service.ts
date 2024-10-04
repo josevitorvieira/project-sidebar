@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { employees } from '../consts/employees.const';
+import { EMPLOYEES } from '../consts/employees.const';
 import { IEmployee } from '../interfaces/employee.interface';
 
 @Injectable({
@@ -7,6 +7,6 @@ import { IEmployee } from '../interfaces/employee.interface';
 })
 export class EmployeesService {
   public getEmployees(): Array<IEmployee> {
-    return employees;
+    return EMPLOYEES;
   }
 }

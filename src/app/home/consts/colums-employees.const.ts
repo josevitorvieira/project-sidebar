@@ -1,6 +1,6 @@
 import { IColum } from '../../shared/components/basic-table/interfaces/basic-table.interface';
 
-export const COLUMS_EMPLOYEES: Array<IColum> = [
+export const COLUMS_EMPLOYEES_TABLE: Array<IColum> = [
   {
     Label: 'Id',
     Key: 'Id',

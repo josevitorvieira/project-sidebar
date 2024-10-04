@@ -5,14 +5,17 @@ import {
   Type,
   ViewContainerRef,
 } from '@angular/core';
-import { DynamicFormConfig, Fields } from '../models/dynamic-form-config.model';
-import { DynamicControl } from '../interfaces/dynamic-control.interface';
+import {
+  DynamicFormConfig,
+  Fields,
+  IDynamicControl,
+} from '../models/dynamic-form-config.model';
 import { DynamicFormInputComponent } from '../components/dynamic-form-input/dynamic-form-input.component';
 import { DynamicFormSelectComponent } from '../components/dynamic-form-select/dynamic-form-select.component';
 import { FormGroup } from '@angular/forms';
 
 type ComponentFields = {
-  [Property in Fields]: Type<DynamicControl>;
+  [Property in Fields]: Type<IDynamicControl>;
 };
 
 const components: ComponentFields = {
@@ -30,6 +33,10 @@ export class DynamicFieldDirective implements OnInit {
   constructor(private viewContainerRef: ViewContainerRef) {}
 
   ngOnInit(): void {
+    this.generateComponent();
+  }
+
+  private generateComponent(): void {
     if (this.config?.type?.field) {
       const component = components[this.config?.type?.field];
       const componentRef = this.viewContainerRef.createComponent(component);

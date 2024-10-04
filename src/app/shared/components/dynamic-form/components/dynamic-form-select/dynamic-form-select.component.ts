@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { DynamicControl } from '../../interfaces/dynamic-control.interface';
-import { DynamicFormConfig } from '../../models/dynamic-form-config.model';
+import {
+  DynamicFormConfig,
+  IDynamicControl,
+} from '../../models/dynamic-form-config.model';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,7 +10,7 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './dynamic-form-select.component.html',
   styleUrl: './dynamic-form-select.component.scss',
 })
-export class DynamicFormSelectComponent implements DynamicControl {
+export class DynamicFormSelectComponent implements IDynamicControl {
   @Input() form!: FormGroup;
 
   config!: DynamicFormConfig;

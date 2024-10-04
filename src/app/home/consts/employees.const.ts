@@ -2,49 +2,7 @@ import { Validators } from '@angular/forms';
 import { DynamicFormConfig } from '../../shared/components/dynamic-form/models/dynamic-form-config.model';
 import { IEmployee } from '../interfaces/employee.interface';
 
-// export const employees: Array<DynamicFormConfig> = [
-//   {
-//     type: { field: 'input' },
-//     label: 'Nome',
-//     name: 'name',
-//     initialValue: 'Vitor',
-//     placeholder: 'Digite seu nome, treinador Pokémon!',
-//   },
-//   {
-//     type: { field: 'input', typeField: 'number' },
-//     label: 'Sua idade',
-//     name: 'age',
-//     initialValue: 33,
-//     placeholder: '18',
-//   },
-//   {
-//     type: { field: 'input' },
-//     label: 'Sua cidade',
-//     name: 'city',
-//     initialValue: 'Arapiraca',
-//     placeholder: 'Pallet',
-//   },
-//   {
-//     type: { field: 'select' },
-//     label: 'Escolha seu Pokémon inicial',
-//     name: 'initialPokemon',
-//     initialValue: '1',
-//     options: [
-//       { label: 'Bulbasaur', value: '1' },
-//       { label: 'Charmander', value: '2' },
-//       { label: 'Squirtle', value: '3' },
-//     ],
-//   },
-// ];
-
-export interface IBaseFormEmployeeConfig {
-  [key: string]: DynamicFormConfig;
-  Name: DynamicFormConfig;
-  Age: DynamicFormConfig;
-  Position: DynamicFormConfig;
-}
-
-export const baseFormConfig: Array<DynamicFormConfig> = [
+export const BASE_FORM_CONFIG: Array<DynamicFormConfig> = [
   {
     type: { field: 'input', typeField: 'number' },
     label: 'Id',
@@ -130,7 +88,7 @@ export const baseFormConfig: Array<DynamicFormConfig> = [
   } as DynamicFormConfig,
 ];
 
-export const employees: Array<IEmployee> = [
+export const EMPLOYEES: Array<IEmployee> = [
   {
     Id: 1,
     Age: 31,

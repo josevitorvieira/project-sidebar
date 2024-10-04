@@ -4,8 +4,10 @@ import {
   FormGroup,
   FormGroupDirective,
 } from '@angular/forms';
-import { DynamicControl } from '../../interfaces/dynamic-control.interface';
-import { DynamicFormConfig } from '../../models/dynamic-form-config.model';
+import {
+  DynamicFormConfig,
+  IDynamicControl,
+} from '../../models/dynamic-form-config.model';
 
 @Component({
   selector: 'app-dynamic-form-input',
@@ -15,7 +17,7 @@ import { DynamicFormConfig } from '../../models/dynamic-form-config.model';
     { provide: ControlContainer, useExisting: FormGroupDirective },
   ],
 })
-export class DynamicFormInputComponent implements DynamicControl {
+export class DynamicFormInputComponent implements IDynamicControl {
   @Input() form!: FormGroup;
   config!: DynamicFormConfig;
 }
