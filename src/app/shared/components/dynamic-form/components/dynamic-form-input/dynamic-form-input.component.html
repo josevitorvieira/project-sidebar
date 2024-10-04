@@ -1,4 +1,4 @@
-<div class="container-input">
+<form [formGroup]="form" class="container-input">
   <label>{{ config.label }}</label>
 
   <input
@@ -8,4 +8,4 @@
     [attr.placeholder]="config.placeholder"
     [formControlName]="config.name"
   />
-</div>
+</form>

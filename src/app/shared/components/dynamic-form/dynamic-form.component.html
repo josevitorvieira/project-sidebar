@@ -1,9 +1,25 @@
 <form [formGroup]="form">
-  <ng-container
-    *ngFor="let field of config"
-    [appDynamicField]="field"
-    [form]="form"
-  >
+  <div *ngIf="!!formTitle" class="form-title">
+    <span>{{ formTitle }}</span>
+  </div>
+
+  <ng-container *ngFor="let field of config">
+    <div>
+      <ng-container
+        *ngIf="!field?.subParams?.length"
+        [appDynamicField]="field"
+        [form]="form"
+      ></ng-container>
+    </div>
+
+    <div *ngIf="isFormGroup(field.name) as childForm">
+      <div *ngFor="let subParam of field?.subParams">
+        <ng-container
+          [appDynamicField]="subParam"
+          [form]="childForm"
+        ></ng-container>
+      </div>
+    </div>
   </ng-container>
 
   <div class="save-button-container">

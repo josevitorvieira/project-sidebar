@@ -1,9 +1,9 @@
 export interface IAddres {
   Street: string;
-  zip: string;
-  city: string;
-  state: string;
-  country: string;
+  Number: number;
+  State: string;
+  City: string;
+  Country: string;
 }
 
 export interface IEmployee {
@@ -12,5 +12,5 @@ export interface IEmployee {
   Age: number;
   Name: string;
   Position: string;
-  Addres?: IAddres;
+  Address?: IAddres;
 }

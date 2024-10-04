@@ -9,6 +9,7 @@ $move-direction-out-negative: -100%;
   transition: transform 0.3s ease;
   z-index: 1000;
   padding: 10px;
+  overflow-y: auto;
 }
 
 .sidebar.top,

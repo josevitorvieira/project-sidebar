@@ -2,6 +2,7 @@
   <app-sidebar #sideBar [size]="SIZE_SIDEBAR" [position]="sidebarPosition">
     <app-dynamic-form
       [config]="config"
+      [formTitle]="FORM_TITLE"
       (save)="updateEmployee($event)"
     ></app-dynamic-form>
   </app-sidebar>

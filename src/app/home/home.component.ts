@@ -27,8 +27,10 @@ import { SidebarComponent } from '../shared/components/sidebar/sidebar.component
 export class HomeComponent implements OnInit {
   @ViewChild('sideBar') sideBar!: SidebarComponent;
 
+  private readonly NOT_FOUND_INDEX: number = -1;
   public readonly SIZE_SIDEBAR: string = '500px';
   public readonly CARD_TITLE: string = 'Funcionários Cadastrados';
+  public readonly FORM_TITLE: string = 'Editar Funcionário';
   public readonly COLUMS_EMPLOYEES: Array<IColum> = COLUMS_EMPLOYEES;
 
   public employees: Array<IEmployee> = [];
@@ -49,14 +51,25 @@ export class HomeComponent implements OnInit {
     this.employees = this.employeesService.getEmployees();
   }
 
+  // CORRIGIR
   public setEmployeeFormConfig(employee: IEmployee): void {
     this.config = [];
     this.changeDetectorRef.detectChanges();
 
     Object.keys(employee).forEach((key) => {
       this.baseForm.forEach((item) => {
-        if (item.name === key) {
-          item.initialValue = employee[key];
+        if (item?.name === key) {
+          if (!!item.subParams) {
+            Object.keys(employee[key]).forEach((keySubform) => {
+              item?.subParams?.forEach((itemSubparam) => {
+                if (itemSubparam?.name === keySubform) {
+                  itemSubparam.initialValue = employee[key][keySubform];
+                }
+              });
+            });
+          } else {
+            item.initialValue = employee[key];
+          }
         }
       });
     });
@@ -67,10 +80,14 @@ export class HomeComponent implements OnInit {
   }
 
   public updateEmployee(employeeData: IEmployee): void {
-    this.employees.forEach((employee, index) => {
-      if (employee.Id === employeeData.Id) {
-        this.employees[index] = employeeData;
-      }
-    });
+    const index: number = this.employees.findIndex(
+      (employee) => employee.Id === employee.Id
+    );
+
+    if (index !== this.NOT_FOUND_INDEX) {
+      this.employees[index] = employeeData;
+    }
+
+    this.sideBar.closeSidebar();
   }
 }

@@ -4,7 +4,6 @@ import {
   Input,
   OnChanges,
   Output,
-  SimpleChanges,
 } from '@angular/core';
 import { DynamicFormConfig } from './models/dynamic-form-config.model';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -17,6 +16,7 @@ import { IEmployee } from '../../../home/interfaces/employee.interface';
 })
 export class DynamicFormComponent implements OnChanges {
   @Input() config: Array<DynamicFormConfig> = [];
+  @Input() formTitle: string = '';
   @Output() save: EventEmitter<IEmployee> = new EventEmitter<IEmployee>();
 
   public form: FormGroup = new FormGroup({});
@@ -27,7 +27,7 @@ export class DynamicFormComponent implements OnChanges {
     this.createForm();
   }
 
-  createForm() {
+  private createForm(): void {
     this.form = new FormGroup({});
 
     this.config.forEach((controlConfig) => {
@@ -58,6 +58,11 @@ export class DynamicFormComponent implements OnChanges {
         );
       }
     });
+  }
+
+  public isFormGroup(controlName: string): FormGroup | null {
+    const control = this.form.get(controlName);
+    return control instanceof FormGroup ? control : null;
   }
 
   public submitForm(): void {
